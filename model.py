@@ -1,32 +1,20 @@
-class BuscaAPI:
-    import requests
+import requests
+import json
 
-    def __init__(self, artista=None, musica=None, tipo_de_rank=None):
+class BuscaAPI:
+    def __init__(self, artista=None, musica=None):
         self.artista = artista
         self.musica = musica
-        self.tipo_de_rank = tipo_de_rank
-
-    def procura(self):
-        """
-        a funçao procura é usada para retornar a url da api para buscar artista e musica
-        """
-        # formatar entrada de parametros para nao dar bug, noa pode ter espaços
-        # obs: aceita trecho do nome
-        art = f'art={self.artista}'
-        mus = f'mus={self.musica}'
-        tipo_de_rank = f'type={self.tipo_de_rank}'
-        url_base = f'https://api.vagalume.com.br/'
-        if self.artista is None and self.musica is None:
-            url = f'https://api.vagalume.com.br/rank.php?{tipo_de_rank}'
-        else:
-            url = f'{url_base}search.php?{art}&{mus}'
-        return url
+        self.url = 'https://api.vagalume.com.br/'
 
     def letra_musica(self):
         """
         busca a letra no idioma original da musica dentro da API do vagalume
         """
-        info = self.requests.get(self.procura())
+        art = f'art={self.artista}'
+        mus = f'mus={self.musica}'
+        url = self.url + f'search.php?{art}&{mus}'
+        info = requests.get(url=url)
         info_j = info.json()
         letra_musica = info_j['mus'][0]['text']
         return letra_musica
@@ -35,19 +23,49 @@ class BuscaAPI:
         """
         busca a tradução da música original dentro da API do vagalume
         """
-        info = self.requests.get(url=self.procura())
+        art = f'art={self.artista}'
+        mus = f'mus={self.musica}'
+        url = self.url + f'search.php?{art}&{mus}'
+        info = requests.get(url=url)
         info_j = info.json()
         traducao_musica = info_j['mus'][0]['translate'][0]['text']
         return traducao_musica
 
-    def rank_geral(self):
+    def rank_geral(self, tipo_de_rank, periodo, escopo, limite):
         """
-        busca a posição dos artistas no ranking do Vagalume
+        busca o ranking do Vagalume
         """
-        info = self.requests.get(url=self.procura())
+        url = self.url + f'rank.php?type={tipo_de_rank}&period={periodo}' \
+                         f'&scope={escopo}&limit={limite}'
+        info = requests.get(url=url)
         info_rank = info.json()
-        rank = info_rank['art']['month']['all']
+        rank = info_rank[tipo_de_rank][periodo]  # [escopo]
         return rank
 
+    def procurar_artista_no_rank(self, tipo_de_rank, periodo, escopo, limite):
+        if self.musica is None:
+            print('Você não procurou por nenhum artista :(')
+        else:
+            """
+                  busca o ranking do Vagalume
+                  """
+            url = self.url + f'rank.php?type={tipo_de_rank}&period={periodo}' \
+                             f'&scope={escopo}&limit={limite}'
+            info = requests.get(url=url)
+            info_rank = info.json()
+            rank = info_rank[tipo_de_rank][periodo]  # [escopo]
+            #print(rank)
+            if self.artista in rank:
+                print('Ele está')
+            else:
+                print('flopou')
 
+    def procurar_musica_no_rank(self):
+        if self.musica is None:
+            print('Você não procurou por nenhuma música :(')
+
+
+#a = BuscaAPI(artista='ariana grande', musica='thank u next',)
+#print(a.rank_geral(periodo='week', limite=100, escopo='nacional', tipo_de_rank='art'))
+#a.procurar_artista_no_rank(periodo='week', limite=100, escopo='nacional', tipo_de_rank='art')
 

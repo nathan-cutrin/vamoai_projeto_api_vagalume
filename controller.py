@@ -22,17 +22,31 @@ class CtrlAPI:
         if opcao == '3':
             return self.escolha_rank()
 
-    def escolha_letra(self):
+    def escolha_usuario_final(self):
+        opcao = self.view.mensagem()
+        if opcao == '1':
+            return self.escolha_letra()
+        if opcao == '2':
+            return self.escolha_traducao()
+        if opcao == '3':
+            return self.escolha_rank()
+
+    def retornar_json_csv(self):
+        self.view.escolha_json_csv()
+
+    def retorna_letra(self):
         nome_artista, nome_musica = self.view.intro_letra('letras')
         self.model.artista, self.model.musica = nome_artista, nome_musica
         letra = self.model.letra_musica()
         print(letra)
+        self.escolha_usuario_final()
 
-    def escolha_traducao(self):
+    def retorna_traducao(self):
         nome_artista, nome_musica = self.view.intro_letra('traduções')
         self.model.artista, self.model.musica = nome_artista, nome_musica
         letra = self.model.traducao_musica()
         print(letra)
+        self.escolha_usuario_final()
 
     def escolha_rank(self):
         tipo_rank, limite = self.view.intro_rank()
@@ -63,9 +77,9 @@ class CtrlAPI:
         if scope == '1':
             self.escopo = 'all'
         elif scope == '2':
-            self.escopo = 'national'
+            self.escopo = 'nacional'
         elif scope == '3':
-            self.escopo = 'international'
+            self.escopo = 'internacional'
 
     def condicoes_musica(self):
         intervalo = self.view.parametros_rank_artista_ou_musica()
@@ -96,27 +110,39 @@ class CtrlAPI:
             self.periodo = 'week'
         elif intervalo == '2':
             self.periodo = 'month'
-
+        if scope == '1':
+            self.escopo = 'all'
+        elif scope == '2':
+            self.escopo = 'nacional'
+        elif scope == '3':
+            self.escopo = 'internacional'
+        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
     def retornar_rank_artista(self):
+        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
         self.condicoes_artistas_album()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
         print(rank)
+        self.escolha_usuario_final()
 
     def retornar_rank_musica(self):
+        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
         self.condicoes_musica()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
         print(rank)
+        self.escolha_usuario_final()
 
     def retornar_rank_album(self):
+        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
         self.condicoes_album()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
         print(rank)
+        self.escolha_usuario_final()
 
 
 

@@ -1,5 +1,5 @@
 import requests
-import json
+
 
 class BuscaAPI:
     def __init__(self, artista=None, musica=None):
@@ -42,30 +42,5 @@ class BuscaAPI:
         rank = info_rank[tipo_de_rank][periodo]  # [escopo]
         return rank
 
-    def procurar_artista_no_rank(self, tipo_de_rank, periodo, escopo, limite):
-        if self.musica is None:
-            print('Você não procurou por nenhum artista :(')
-        else:
-            """
-                  busca o ranking do Vagalume
-                  """
-            url = self.url + f'rank.php?type={tipo_de_rank}&period={periodo}' \
-                             f'&scope={escopo}&limit={limite}'
-            info = requests.get(url=url)
-            info_rank = info.json()
-            rank = info_rank[tipo_de_rank][periodo]  # [escopo]
-            #print(rank)
-            if self.artista in rank:
-                print('Ele está')
-            else:
-                print('flopou')
 
-    def procurar_musica_no_rank(self):
-        if self.musica is None:
-            print('Você não procurou por nenhuma música :(')
-
-
-#a = BuscaAPI(artista='ariana grande', musica='thank u next',)
-#print(a.rank_geral(periodo='week', limite=100, escopo='nacional', tipo_de_rank='art'))
-#a.procurar_artista_no_rank(periodo='week', limite=100, escopo='nacional', tipo_de_rank='art')
 

@@ -15,7 +15,7 @@ class View:
               'top 100 de mais acessados'
               '\nVamos começar?\n')
         menu = ''
-        while menu != '1' and menu != '2' and menu != '3' and menu != '3':
+        while int(menu) not in range(4):
             menu = str(input('Digite o número referente a opção desejada: '))
         return menu
 
@@ -37,14 +37,14 @@ class View:
     def parametros_gerais_rank(self):
         tipo_de_rank = ''
         limite = ''
-        while tipo_de_rank != '1' and tipo_de_rank != '2' and tipo_de_rank != '3':
+        while int(menu) not in range(4):
             tipo_de_rank = str(input('\nOpções:'
                                      '\n[1] para rank de artistas '
                                      '\n[2] para rank de músicas'
                                      '\n[3] para rank de álbuns'
                                      '\nDigite a opção escolhida: '))
 
-        while limite != '1' and limite != '2' and limite != '3':
+        while int(menu) not in range(4):
             limite = str(input('\nDigite um número de tamanho máximo '
                                'do ranking Vagalume.'
                                '\nEx: Se eu quero um top 50, '
@@ -54,7 +54,7 @@ class View:
 
     def parametros_rank_artista_ou_musica(self):
         valor = ''
-        while valor != != '1' and valor != '2' and valor != '3':
+        while int(menu) not in range(4):
             valor = str(input('\nOpções: '
                               '\n[1] para ranking diário'
                               '\n[2] para ranking semanal'
@@ -66,7 +66,7 @@ class View:
         print('Para este ranking, você pode escolher as '
               'seguintes opções.')
         escopo = ''
-        while escopo != '1' and escopo != '2' and escopo != '3':
+        while int(menu) not in range(4):
             escopo = str(input('\nOpções:'
                                '\n[1] para ranking geral, '
                                'incluindo nacionais '
@@ -78,7 +78,7 @@ class View:
 
     def escopo_musica(self):
         musica = ''
-        while musica != '1' and musica != '2' and musica != '3':
+        while int(menu) not in range(4):
             musica = str(input('\nOpções:'
                                '\n[1] para ranking geral '
                                'de músicas, incluindo todas as músicas '
@@ -92,7 +92,7 @@ class View:
 
     def periodo_album(self):
         valor = ''
-        while valor != '1' and valor != '2' and valor != '3':
+        while int(menu) not in range(4):
             valor = str(input('\nOpções: '
                               '\n[1] para ranking semanal'
                               '\n[2] para ranking mensal'
@@ -110,7 +110,7 @@ class View:
 
     def escolha_json_csv(self):
         escolha = ''
-        while escolha != '1' and escolha != '2' and escolha != '3':
+        while int(menu) not in range(4):
             escolha = str(input('\nVocê deseja retornar o resultado em'
                                 'formato JSON, CSV ou formatado para '
                                 'melhor visualização?'))

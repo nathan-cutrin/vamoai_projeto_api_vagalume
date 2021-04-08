@@ -6,6 +6,7 @@ class BuscaAPI:
         self.artista = artista
         self.musica = musica
         self.url = 'https://api.vagalume.com.br/'
+        self.resultado_request = None
 
     def letra_musica(self):
         """
@@ -15,8 +16,7 @@ class BuscaAPI:
         mus = f'mus={self.musica}'
         url = self.url + f'search.php?{art}&{mus}'
         info = requests.get(url=url)
-        if info.status_code != 200:
-            raise Exception(f"ERRO [{info.status_code}]\nREQUEST [{url}]")
+        self.resultado_request = info.status_code
         info_j = info.json()
         return info_j
 
@@ -28,8 +28,7 @@ class BuscaAPI:
         mus = f'mus={self.musica}'
         url = self.url + f'search.php?{art}&{mus}'
         info = requests.get(url=url)
-        if info.status_code != 200:
-            raise Exception(f"ERRO [{info.status_code}]\nREQUEST [{url}]")
+        self.resultado_request = info.status_code
         info_j = info.json()
         return info_j
 
@@ -40,10 +39,11 @@ class BuscaAPI:
         url = self.url + f'rank.php?type={tipo_de_rank}&period={periodo}' \
                          f'&scope={escopo}&limit={limite}'
         info = requests.get(url=url)
-        if info.status_code != 200:
-            raise Exception(f"ERRO [{info.status_code}]\nREQUEST [{url}]")
+        self.resultado_request = info.status_code
         info_rank = info.json()
         return info_rank
+
+
 
 
 

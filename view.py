@@ -14,24 +14,34 @@ class View:
         * menu = None
         while menu not in ['1', '2', '3']:
             menu = input('Digite o número referente a opção desejada: ')
+
+
+            faz uma breve introduçao da api e guarda a escolha do usuario na variavel menu e retorna a variavel menu 
         """
         print('Neste programa, você poderá procurar por:\n'
               '\n1 - Letras de músicas brasileiras e internacionais'
               '\n2 - Traduções de músicas internacionais'
               '\n3 - Acessar o top 100 de artistas, músicas ou albuns '
-              'mais acessados do Vagalume'
-              '\nVamos começar?\n')
+              'mais acessados do Vagalume\n'
+              '\nVamos começar?')
         menu = ''
         while menu != '1' and menu != '2' and menu != '3':
-            menu = str(input('Digite o número referente a opção desejada: '))
+            menu = str(input('Digite o número referente a uma das opção acima: '))
         return menu
 
     def intro_letra(self, parametro):
+        '''
+        introduçao em texto para perguntar ao usuario se ele quer letras e ja chama a funçaço "parametros_letra()"
+        
+        '''
         print(f'\nPara procurar {parametro} de músicas, precisamos de algumas '
               'informações.')
         return self.parametros_letra()
 
     def parametros_letra(self):
+        '''
+        pergunta ao usario e guarda sua resposta definindo o artista e musica para busca
+        '''
         nome_do_artista = str(input('Por favor, digite o nome do artista: '))
         nome_da_musica = str(input('Por favor, digite o nome da música: '))
         return nome_do_artista, nome_da_musica
@@ -116,6 +126,10 @@ class View:
             return self.menu()
 
     def escolha_formato(self):
+        '''
+        da uma introduçao ao usuario das opçoes de saida dos dados.
+        opçoes de saida: json, csv, e saida formatado em texto legivel para humanos
+        '''
         escolha = None
         while escolha != '1' and escolha != '2' and escolha != '3':
             escolha = str(input('\nVocê deseja retornar o resultado em '
@@ -123,7 +137,7 @@ class View:
                                 'melhor visualização?'
                                 '\nAo optar pelo formato JSON ou CSV, '
                                 'o programa trará os dados completos que '
-                                'a API disponibiliza para consultar.'
+                                'a API disponibiliza para consultar. Opçao formatado traz a visualização em texto'
                                 '\n[1] para JSON'
                                 '\n[2] para CSV'
                                 '\n[3] para formatado'

@@ -16,6 +16,9 @@ class CtrlAPI:
         self.formato = None
 
     def escolha_usuario(self):
+        '''
+        recebe um numero entre 1 e 3 em string(que foi digitado pelo usuario) que define qual funçao sera chamada 
+        '''
         opcao = self.view.introducao()
         self.opcao = opcao
         if opcao == '1':
@@ -64,6 +67,9 @@ class CtrlAPI:
         print(self.model.resultado_request)
 
     def retorna_letra(self):
+        '''
+        recebe o nome do artista e musica e define os atributos self.model.artista e self.model.musica e 
+        '''
         nome_artista, nome_musica = self.view.intro_letra('letras')
         self.model.artista, self.model.musica = nome_artista, nome_musica
         self.formato = self.view.escolha_formato()

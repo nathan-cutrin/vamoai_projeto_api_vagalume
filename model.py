@@ -18,8 +18,7 @@ class BuscaAPI:
         if info.status_code != 200:
             raise Exception(f"ERRO [{info.status_code}]\nREQUEST [{url}]")
         info_j = info.json()
-        letra_musica = info_j['mus'][0]['text']
-        return letra_musica
+        return info_j
 
     def traducao_musica(self):
         """
@@ -32,8 +31,7 @@ class BuscaAPI:
         if info.status_code != 200:
             raise Exception(f"ERRO [{info.status_code}]\nREQUEST [{url}]")
         info_j = info.json()
-        traducao_musica = info_j['mus'][0]['translate'][0]['text']
-        return traducao_musica
+        return info_j
 
     def rank_geral(self, tipo_de_rank, periodo, escopo, limite):
         """
@@ -45,8 +43,9 @@ class BuscaAPI:
         if info.status_code != 200:
             raise Exception(f"ERRO [{info.status_code}]\nREQUEST [{url}]")
         info_rank = info.json()
-        rank = info_rank[tipo_de_rank][periodo]  # [escopo]
-        return rank
+        return info_rank
+
+
 
 
 

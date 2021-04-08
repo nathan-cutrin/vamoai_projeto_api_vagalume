@@ -18,8 +18,7 @@ class View:
               'mais acessados do Vagalume'
               '\nVamos começar?\n')
         menu = ''
-
-        while int(menu) not in range(4):
+        while menu != '1' and menu != '2' and menu != '3':
             menu = str(input('Digite o número referente a opção desejada: '))
         return menu
 
@@ -41,27 +40,24 @@ class View:
     def parametros_gerais_rank(self):
         tipo_de_rank = ''
         limite = ''
-        while int(menu) not in range(4):
+        while tipo_de_rank != '1' and tipo_de_rank != '2' and tipo_de_rank != '3':
             tipo_de_rank = str(input('\nOpções:'
                                      '\n[1] para rank de artistas '
                                      '\n[2] para rank de músicas'
                                      '\n[3] para rank de álbuns'
                                      '\nDigite a opção escolhida: '))
 
-        while int(menu) not in range(4):
-            limite = str(input('\nDigite um número de tamanho máximo '
-                               'do ranking Vagalume.'
-                               '\nEx: Se eu quero um top 50, '
-                               'devo digitar: 50'
-                               '\nDigite sua escolha: '))
+        #while limite not in range(1, 100):
+        limite = str(input('\nDigite um número de tamanho máximo '
+                           'do ranking Vagalume.'
+                           '\nEx: Se eu quero um top 50, '
+                           'devo digitar: 50'
+                           '\nDigite sua escolha: '))
         return tipo_de_rank, limite
 
     def parametros_rank_artista_ou_musica(self):
         valor = ''
-
-
-        while int(menu) not in range(4):
-
+        while valor != '1' and valor != '2' and valor != '3':
             valor = str(input('\nOpções: '
                               '\n[1] para ranking diário'
                               '\n[2] para ranking semanal'
@@ -73,7 +69,7 @@ class View:
         print('Para este ranking, você pode escolher as '
               'seguintes opções.')
         escopo = ''
-        while int(menu) not in range(4):
+        while escopo != '1' and escopo != '2' and escopo != '3':
             escopo = str(input('\nOpções:'
                                '\n[1] para ranking geral, '
                                'incluindo nacionais '
@@ -85,7 +81,7 @@ class View:
 
     def escopo_musica(self):
         musica = ''
-        while int(menu) not in range(4):
+        while musica != '1' and musica != '2' and musica != '3':
             musica = str(input('\nOpções:'
                                '\n[1] para ranking geral '
                                'de músicas, incluindo todas as músicas '
@@ -99,7 +95,7 @@ class View:
 
     def periodo_album(self):
         valor = ''
-        while int(menu) not in range(4):
+        while valor != '1' and valor != '2' and valor != '3':
             valor = str(input('\nOpções: '
                               '\n[1] para ranking semanal'
                               '\n[2] para ranking mensal'
@@ -115,10 +111,10 @@ class View:
         elif continuar == 'S':
             return self.menu()
 
-    def escolha_json_csv(self):
-        escolha = ''
-        while int(menu) not in range(4):
-            escolha = str(input('\nVocê deseja retornar o resultado em'
+    def escolha_formato(self):
+        escolha = None
+        while escolha != '1' and escolha != '2' and escolha != '3':
+            escolha = str(input('\nVocê deseja retornar o resultado em '
                                 'formato JSON, CSV ou formatado para '
                                 'melhor visualização?'
                                 '\nAo optar pelo formato JSON ou CSV, '
@@ -128,12 +124,6 @@ class View:
                                 '\n[2] para CSV'
                                 '\n[3] para formatado'
                                 '\nDigite aqui sua escolha: '))
-        return escolha
-
-    def escolher_formato_novamente(self):
-        escolha = None
-        while escolha != 'S' and escolha != 'N':
-            escolha = str(input('\nDeseja retornar em outro formato? [S/N]'))
         return escolha
 
 

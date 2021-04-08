@@ -43,13 +43,25 @@ class CtrlAPI:
             self.formato = 'formatado'
 
     def retornar_formato(self, request):
+        resultado = ''
         if self.formato == 'json':
             resultado = json.dumps(request, indent=2)
         elif self.formato == 'csv':
-            resultado = pd.DataFrame.from_list(data=[1, 2, 3], orient='columns')
+            resultado = pd.DataFrame.from_dict(data=request, orient='index')
             resultado.reset_index(inplace=True)
             resultado.to_csv(header=False)
         return resultado
+
+    def retornar_status_request(self):
+        if self.model.resultado_request == 200:
+            print('Requisição bem sucedida.')
+        elif self.model.resultado_request == 400:
+            print('Requisição mal sucedida.')
+        elif self.model.resultado_request == 401:
+            print('Requisição não autorizada.')
+        elif self.model.resultado_request == 404:
+            print('Requisição não encontrada :(')
+        print(self.model.resultado_request)
 
     def retorna_letra(self):
         nome_artista, nome_musica = self.view.intro_letra('letras')
@@ -57,6 +69,7 @@ class CtrlAPI:
         self.formato = self.view.escolha_formato()
         self.definir_formato()
         letra = self.model.letra_musica()
+        self.retornar_status_request()
         if self.formato != 'formatado':
             letra_formatada = self.retornar_formato(letra)
             print(letra_formatada)
@@ -150,26 +163,44 @@ class CtrlAPI:
 
     def retornar_rank_artista(self):
         self.condicoes_artistas_album()
+        self.formato = self.view.escolha_formato()
+        self.definir_formato()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        print(rank)
+        if self.formato != 'formatado':
+            rank_formatado = self.retornar_formato(rank)
+            print(rank_formatado)
+        else:
+            rank_formatado = rank[self.rank][self.periodo][self.escopo]
+            print(rank)
+            print(rank_formatado)
+            for elemento in rank_formatado:
+                print(f'Nome:{elemento["name"]} -'
+                      f'Visualizações únicas: {rank_formatado["uniques"]} -'
+                      f'Visualizações totais: {rank_formatado["views"]}')
         self.escolha_usuario_final()
 
     def retornar_rank_musica(self):
         self.condicoes_musica()
+        self.formato = self.view.escolha_formato()
+        self.definir_formato()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        print(rank)
+        rank_formatado = self.retornar_formato(rank)
+        print(rank_formatado)
         self.escolha_usuario_final()
 
     def retornar_rank_album(self):
         self.condicoes_album()
+        self.formato = self.view.escolha_formato()
+        self.definir_formato()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        print(rank)
+        rank_formatado = self.retornar_formato(rank)
+        print(rank_formatado)
         self.escolha_usuario_final()
 
 

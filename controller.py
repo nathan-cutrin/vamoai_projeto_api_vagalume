@@ -1,51 +1,82 @@
 from model import BuscaAPI
 from view import View
+import json
+import pandas as pd
 
 
 class CtrlAPI:
     def __init__(self):
         self.model = BuscaAPI(artista=None, musica=None)
         self.view = View()
-        self.opcao = ''
-        self.rank = ''
-        self.limit = ''
-        self.periodo = ''
-        self.escopo = ''
+        self.opcao = None
+        self.rank = None
+        self.limit = None
+        self.periodo = None
+        self.escopo = None
+        self.formato = None
 
     def escolha_usuario(self):
         opcao = self.view.introducao()
         self.opcao = opcao
         if opcao == '1':
-            return self.escolha_letra()
+            return self.retorna_letra()
         if opcao == '2':
-            return self.escolha_traducao()
+            return self.retorna_traducao()
         if opcao == '3':
             return self.escolha_rank()
 
     def escolha_usuario_final(self):
         opcao = self.view.mensagem()
         if opcao == '1':
-            return self.escolha_letra()
+            return self.retorna_letra()
         if opcao == '2':
-            return self.escolha_traducao()
+            return self.retorna_traducao()
         if opcao == '3':
             return self.escolha_rank()
 
-    def retornar_json_csv(self):
-        self.view.escolha_json_csv()
+    def definir_formato(self):
+        if self.formato == '1':
+            self.formato = 'json'
+        elif self.formato == '2':
+            self.formato = 'csv'
+        elif self.formato == '3':
+            self.formato = 'formatado'
+
+    def retornar_formato(self, request):
+        if self.formato == 'json':
+            resultado = json.dumps(request, indent=2)
+        elif self.formato == 'csv':
+            resultado = pd.DataFrame.from_list(data=[1, 2, 3], orient='columns')
+            resultado.reset_index(inplace=True)
+            resultado.to_csv(header=False)
+        return resultado
 
     def retorna_letra(self):
         nome_artista, nome_musica = self.view.intro_letra('letras')
         self.model.artista, self.model.musica = nome_artista, nome_musica
+        self.formato = self.view.escolha_formato()
+        self.definir_formato()
         letra = self.model.letra_musica()
-        print(letra)
+        if self.formato != 'formatado':
+            letra_formatada = self.retornar_formato(letra)
+            print(letra_formatada)
+        else:
+            letra_completa = letra['mus'][0]['text']
+            print(letra_completa)
         self.escolha_usuario_final()
 
     def retorna_traducao(self):
         nome_artista, nome_musica = self.view.intro_letra('traduções')
         self.model.artista, self.model.musica = nome_artista, nome_musica
-        letra = self.model.traducao_musica()
-        print(letra)
+        self.formato = self.view.escolha_formato()
+        self.definir_formato()
+        traducao = self.model.traducao_musica()
+        if self.formato != 'formatado':
+            traducao_formatada = self.retornar_formato(traducao)
+            print(traducao_formatada)
+        else:
+            traducao_completa = traducao['mus'][0]['translate'][0]['text']
+            print(traducao_completa)
         self.escolha_usuario_final()
 
     def escolha_rank(self):
@@ -116,9 +147,8 @@ class CtrlAPI:
             self.escopo = 'nacional'
         elif scope == '3':
             self.escopo = 'internacional'
-        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
+
     def retornar_rank_artista(self):
-        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
         self.condicoes_artistas_album()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
@@ -127,7 +157,6 @@ class CtrlAPI:
         self.escolha_usuario_final()
 
     def retornar_rank_musica(self):
-        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
         self.condicoes_musica()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
@@ -136,7 +165,6 @@ class CtrlAPI:
         self.escolha_usuario_final()
 
     def retornar_rank_album(self):
-        print(f'{self.rank}{self.periodo}{self.escopo}{self.limit}')
         self.condicoes_album()
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,

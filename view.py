@@ -6,16 +6,19 @@ class View:
         return self.menu()
 
     def menu(self):
+        """
+        * menu = None
+        while menu not in ['1', '2', '3']:
+            menu = input('Digite o número referente a opção desejada: ')
+        """
         print('Neste programa, você poderá procurar por:\n'
               '\n1 - Letras de músicas brasileiras e internacionais'
               '\n2 - Traduções de músicas internacionais'
               '\n3 - Acessar o top 100 de artistas, músicas ou albuns '
               'mais acessados do Vagalume'
-              '\n4 - Verificar se seu artista, música ou álbum preferido está no '
-              'top 100 de mais acessados'
               '\nVamos começar?\n')
         menu = ''
-        while menu != '1' and menu != '2' and menu != '3' and menu != '3':
+        while menu != '1' and menu != '2' and menu != '3':
             menu = str(input('Digite o número referente a opção desejada: '))
         return menu
 
@@ -54,7 +57,7 @@ class View:
 
     def parametros_rank_artista_ou_musica(self):
         valor = ''
-        while valor != != '1' and valor != '2' and valor != '3':
+        while valor != '1' and valor != '2' and valor != '3':
             valor = str(input('\nOpções: '
                               '\n[1] para ranking diário'
                               '\n[2] para ranking semanal'
@@ -108,15 +111,26 @@ class View:
         elif continuar == 'S':
             return self.menu()
 
-    def escolha_json_csv(self):
-        escolha = ''
+    def escolha_formato(self):
+        escolha = None
         while escolha != '1' and escolha != '2' and escolha != '3':
-            escolha = str(input('\nVocê deseja retornar o resultado em'
+            escolha = str(input('\nVocê deseja retornar o resultado em '
                                 'formato JSON, CSV ou formatado para '
-                                'melhor visualização?'))
+                                'melhor visualização?'
+                                '\nAo optar pelo formato JSON ou CSV, '
+                                'o programa trará os dados completos que '
+                                'a API disponibiliza para consultar.'
+                                '\n[1] para JSON'
+                                '\n[2] para CSV'
+                                '\n[3] para formatado'
+                                '\nDigite aqui sua escolha: '))
         return escolha
 
-
+    def escolher_formato_novamente(self):
+        escolha = None
+        while escolha != 'S' and escolha != 'N':
+            escolha = str(input('\nDeseja retornar em outro formato? [S/N]'))
+        return escolha
 
 
 

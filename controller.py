@@ -61,6 +61,8 @@ class CtrlAPI:
             print('Requisição não autorizada.')
         elif self.model.resultado_request == 404:
             print('Requisição não encontrada :(')
+        elif self.model.resultado_request == 500:
+            print('Erro no servidor')
         print(self.model.resultado_request)
 
     def retorna_letra(self):
@@ -84,6 +86,7 @@ class CtrlAPI:
         self.formato = self.view.escolha_formato()
         self.definir_formato()
         traducao = self.model.traducao_musica()
+        self.retornar_status_request()
         if self.formato != 'formatado':
             traducao_formatada = self.retornar_formato(traducao)
             print(traducao_formatada)
@@ -168,17 +171,18 @@ class CtrlAPI:
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
+        self.retornar_status_request()
         if self.formato != 'formatado':
             rank_formatado = self.retornar_formato(rank)
             print(rank_formatado)
         else:
             rank_formatado = rank[self.rank][self.periodo][self.escopo]
-            print(rank)
-            print(rank_formatado)
+            cont = 1
             for elemento in rank_formatado:
-                print(f'Nome:{elemento["name"]} -'
-                      f'Visualizações únicas: {rank_formatado["uniques"]} -'
-                      f'Visualizações totais: {rank_formatado["views"]}')
+                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                      f"Visualizações únicas: {elemento['uniques']} --- "
+                      f"Visualizações totais: {elemento['views']}")
+                cont += 1
         self.escolha_usuario_final()
 
     def retornar_rank_musica(self):
@@ -188,8 +192,17 @@ class CtrlAPI:
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        rank_formatado = self.retornar_formato(rank)
-        print(rank_formatado)
+        if self.formato != 'formatado':
+            rank_formatado = self.retornar_formato(rank)
+            print(rank_formatado)
+        else:
+            rank_formatado = rank[self.rank][self.periodo][self.escopo]
+            cont = 1
+            for elemento in rank_formatado:
+                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                      f"Visualizações únicas: {elemento['uniques']} --- "
+                      f"Visualizações totais: {elemento['views']}")
+                cont += 1
         self.escolha_usuario_final()
 
     def retornar_rank_album(self):
@@ -199,8 +212,17 @@ class CtrlAPI:
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        rank_formatado = self.retornar_formato(rank)
-        print(rank_formatado)
+        if self.formato != 'formatado':
+            rank_formatado = self.retornar_formato(rank)
+            print(rank_formatado)
+        else:
+            rank_formatado = rank[self.rank][self.periodo][self.escopo]
+            cont = 1
+            for elemento in rank_formatado:
+                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                      f"Visualizações únicas: {elemento['uniques']} --- "
+                      f"Visualizações totais: {elemento['views']}")
+                cont += 1
         self.escolha_usuario_final()
 
 

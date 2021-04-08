@@ -47,7 +47,6 @@ class View:
                                      '\n[3] para rank de álbuns'
                                      '\nDigite a opção escolhida: '))
 
-        #while limite not in range(1, 100):
         limite = str(input('\nDigite um número de tamanho máximo '
                            'do ranking Vagalume.'
                            '\nEx: Se eu quero um top 50, '
@@ -105,7 +104,7 @@ class View:
     def mensagem(self):
         continuar = ''
         while continuar != 'S' and continuar != 'N':
-            continuar = str(input('\nDeseja continuar? [S/N]: ')).upper()
+            continuar = str(input('\nVoltar ao menu? [S/N]: ')).upper()
         if continuar == 'N':
             print('Obrigado por utilizar nosso programa :D!')
         elif continuar == 'S':

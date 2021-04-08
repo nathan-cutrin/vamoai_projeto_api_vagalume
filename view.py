@@ -47,12 +47,12 @@ class View:
                                      '\n[3] para rank de álbuns'
                                      '\nDigite a opção escolhida: '))
 
-        while limite != '1' and limite != '2' and limite != '3':
-            limite = str(input('\nDigite um número de tamanho máximo '
-                               'do ranking Vagalume.'
-                               '\nEx: Se eu quero um top 50, '
-                               'devo digitar: 50'
-                               '\nDigite sua escolha: '))
+        #while limite not in range(1, 100):
+        limite = str(input('\nDigite um número de tamanho máximo '
+                           'do ranking Vagalume.'
+                           '\nEx: Se eu quero um top 50, '
+                           'devo digitar: 50'
+                           '\nDigite sua escolha: '))
         return tipo_de_rank, limite
 
     def parametros_rank_artista_ou_musica(self):
@@ -124,12 +124,6 @@ class View:
                                 '\n[2] para CSV'
                                 '\n[3] para formatado'
                                 '\nDigite aqui sua escolha: '))
-        return escolha
-
-    def escolher_formato_novamente(self):
-        escolha = None
-        while escolha != 'S' and escolha != 'N':
-            escolha = str(input('\nDeseja retornar em outro formato? [S/N]'))
         return escolha
 
 

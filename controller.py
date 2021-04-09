@@ -18,6 +18,7 @@ class CtrlAPI:
     def escolha_usuario(self):
         opcao = self.view.introducao()
         self.opcao = opcao
+
         if opcao == '1':
             return self.retorna_letra()
         if opcao == '2':
@@ -54,13 +55,15 @@ class CtrlAPI:
 
     def retornar_status_request(self):
         if self.model.resultado_request == 200:
-            print('Requisição bem sucedida.')
+            print('\n               --Erro 200: requisição bem sucedida.--')
         elif self.model.resultado_request == 400:
-            print('Requisição mal sucedida.')
+            print('\n               --Erro 401: requisição mal sucedida.--')
         elif self.model.resultado_request == 401:
-            print('Requisição não autorizada.')
+            print('\n               --Erro 401: requisição não autorizada.--')
         elif self.model.resultado_request == 404:
-            print('Requisição não encontrada :(')
+            print('\n               --Erro 404: Requisição não encontrada.--')
+        elif self.model.resultado_request == 500:
+            print('\n               --Erro 500: erro no servidor--')
         print(self.model.resultado_request)
 
     def retorna_letra(self):
@@ -76,6 +79,9 @@ class CtrlAPI:
         else:
             letra_completa = letra['mus'][0]['text']
             print(letra_completa)
+        erro = self.view.mostrando_codigo_404()
+        if erro == 'S':
+            print(self.model.request_erro_404())
         self.escolha_usuario_final()
 
     def retorna_traducao(self):
@@ -84,12 +90,16 @@ class CtrlAPI:
         self.formato = self.view.escolha_formato()
         self.definir_formato()
         traducao = self.model.traducao_musica()
+        self.retornar_status_request()
         if self.formato != 'formatado':
             traducao_formatada = self.retornar_formato(traducao)
             print(traducao_formatada)
         else:
             traducao_completa = traducao['mus'][0]['translate'][0]['text']
             print(traducao_completa)
+        erro = self.view.mostrando_codigo_404()
+        if erro == 'S':
+            print(self.model.request_erro_404())
         self.escolha_usuario_final()
 
     def escolha_rank(self):
@@ -140,6 +150,14 @@ class CtrlAPI:
             self.periodo = 'week'
         elif intervalo == '3':
             self.periodo = 'month'
+        if scope == '1':
+            self.escopo = 'all'
+        elif scope == '2':
+            self.escopo = 'lyrics'
+        elif scope == '3':
+            self.escopo = 'translations'
+        elif scope == '4':
+            self.escopo = 'chords'
 
     def condicoes_album(self):
         intervalo = self.view.periodo_album()
@@ -168,17 +186,21 @@ class CtrlAPI:
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
+        self.retornar_status_request()
         if self.formato != 'formatado':
             rank_formatado = self.retornar_formato(rank)
             print(rank_formatado)
         else:
             rank_formatado = rank[self.rank][self.periodo][self.escopo]
-            print(rank)
-            print(rank_formatado)
+            cont = 1
             for elemento in rank_formatado:
-                print(f'Nome:{elemento["name"]} -'
-                      f'Visualizações únicas: {rank_formatado["uniques"]} -'
-                      f'Visualizações totais: {rank_formatado["views"]}')
+                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                      f"Visualizações únicas: {elemento['uniques']} --- "
+                      f"Visualizações totais: {elemento['views']}")
+                cont += 1
+        erro = self.view.mostrando_codigo_404()
+        if erro == 'S':
+            print(self.model.request_erro_404())
         self.escolha_usuario_final()
 
     def retornar_rank_musica(self):
@@ -188,8 +210,22 @@ class CtrlAPI:
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        rank_formatado = self.retornar_formato(rank)
-        print(rank_formatado)
+        self.retornar_status_request()
+        if self.formato != 'formatado':
+            rank_formatado = self.retornar_formato(rank)
+            print(rank_formatado)
+        else:
+            rank_formatado = rank[self.rank][self.periodo][self.escopo]
+            print(rank_formatado)
+            cont = 1
+            for elemento in rank_formatado:
+                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                      f"Visualizações únicas: {elemento['uniques']} --- "
+                      f"Visualizações totais: {elemento['views']}")
+                cont += 1
+        erro = self.view.mostrando_codigo_404()
+        if erro == 'S':
+            print(self.model.request_erro_404())
         self.escolha_usuario_final()
 
     def retornar_rank_album(self):
@@ -199,8 +235,21 @@ class CtrlAPI:
         rank = self.model.rank_geral(tipo_de_rank=self.rank,
                                      periodo=self.periodo, escopo=self.escopo,
                                      limite=self.limit)
-        rank_formatado = self.retornar_formato(rank)
-        print(rank_formatado)
+        self.retornar_status_request()
+        if self.formato != 'formatado':
+            rank_formatado = self.retornar_formato(rank)
+            print(rank_formatado)
+        else:
+            rank_formatado = rank[self.rank][self.periodo][self.escopo]
+            cont = 1
+            for elemento in rank_formatado:
+                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                      f"Visualizações únicas: {elemento['uniques']} --- "
+                      f"Visualizações totais: {elemento['views']}")
+                cont += 1
+        erro = self.view.mostrando_codigo_404()
+        if erro == 'S':
+            print(self.model.request_erro_404())
         self.escolha_usuario_final()
 
 

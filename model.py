@@ -43,6 +43,18 @@ class BuscaAPI:
         info_rank = info.json()
         return info_rank
 
+    def request_erro_404(self):
+        url = 'https://www.vagalume.com.br/u2/discografia/index.js'
+        info = requests.get(url=url)
+        self.resultado_request = info.status_code
+        print(f'\nVamos lá...'
+              f'\nAcho que vou pesquisar sobre a discografia do U2!'
+              f'\nProcurando pela URL {url}...'
+              f'\nNão encontrei nada :(')
+        return f'               --Erro: {self.resultado_request}, ' \
+               f'requisição não encontrada.--'
+
+
 
 
 

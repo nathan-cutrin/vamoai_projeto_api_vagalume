@@ -1,16 +1,11 @@
 class View:
     def introducao(self):
-        print('Seja bem vindo a API do Vagalume!'
+        print('Seja bem vindo a este software de requisição à API do Vagalume!'
               '\nAqui você pode encontrar algumas informações do mundo d'
               'a música!!!')
         return self.menu()
 
     def menu(self):
-        """
-        * menu = None
-        while menu not in ['1', '2', '3']:
-            menu = input('Digite o número referente a opção desejada: ')
-        """
         print('Neste programa, você poderá procurar por:\n'
               '\n1 - Letras de músicas brasileiras e internacionais'
               '\n2 - Traduções de músicas internacionais'
@@ -18,7 +13,7 @@ class View:
               'mais acessados do Vagalume'
               '\nVamos começar?\n')
         menu = ''
-        while menu != '1' and menu != '2' and menu != '3':
+        while menu not in ['1', '2', '3']:
             menu = str(input('Digite o número referente a opção desejada: '))
         return menu
 
@@ -38,26 +33,28 @@ class View:
         return self.parametros_gerais_rank()
 
     def parametros_gerais_rank(self):
-        tipo_de_rank = ''
+        tipo_de_rank = None
         limite = ''
-        while tipo_de_rank != '1' and tipo_de_rank != '2' and tipo_de_rank != '3':
+        while tipo_de_rank not in ['1', '2', '3']:
             tipo_de_rank = str(input('\nOpções:'
                                      '\n[1] para rank de artistas '
                                      '\n[2] para rank de músicas'
                                      '\n[3] para rank de álbuns'
                                      '\nDigite a opção escolhida: '))
 
-        #while limite not in range(1, 100):
-        limite = str(input('\nDigite um número de tamanho máximo '
-                           'do ranking Vagalume.'
-                           '\nEx: Se eu quero um top 50, '
-                           'devo digitar: 50'
-                           '\nDigite sua escolha: '))
+        lista = list(range(1, 100))
+        lista_2 = [str(num) for num in lista]
+        while limite not in lista_2:
+            limite = str(input('\nDigite um número de tamanho máximo '
+                               'do ranking Vagalume.'
+                               '\nEx: Se eu quero um top 50, '
+                               'devo digitar: 50'
+                               '\nDigite sua escolha: '))
         return tipo_de_rank, limite
 
     def parametros_rank_artista_ou_musica(self):
-        valor = ''
-        while valor != '1' and valor != '2' and valor != '3':
+        valor = None
+        while valor not in ['1', '2', '3']:
             valor = str(input('\nOpções: '
                               '\n[1] para ranking diário'
                               '\n[2] para ranking semanal'
@@ -68,8 +65,8 @@ class View:
     def escopo_artista_album(self):
         print('Para este ranking, você pode escolher as '
               'seguintes opções.')
-        escopo = ''
-        while escopo != '1' and escopo != '2' and escopo != '3':
+        escopo = None
+        while escopo not in ['1', '2', '3']:
             escopo = str(input('\nOpções:'
                                '\n[1] para ranking geral, '
                                'incluindo nacionais '
@@ -80,8 +77,8 @@ class View:
         return escopo
 
     def escopo_musica(self):
-        musica = ''
-        while musica != '1' and musica != '2' and musica != '3':
+        musica = None
+        while musica not in ['1', '2', '3', '4']:
             musica = str(input('\nOpções:'
                                '\n[1] para ranking geral '
                                'de músicas, incluindo todas as músicas '
@@ -94,8 +91,8 @@ class View:
         return musica
 
     def periodo_album(self):
-        valor = ''
-        while valor != '1' and valor != '2' and valor != '3':
+        valor = None
+        while valor not in ['1', '2']:
             valor = str(input('\nOpções: '
                               '\n[1] para ranking semanal'
                               '\n[2] para ranking mensal'
@@ -103,9 +100,9 @@ class View:
         return valor
 
     def mensagem(self):
-        continuar = ''
-        while continuar != 'S' and continuar != 'N':
-            continuar = str(input('\nDeseja continuar? [S/N]: ')).upper()
+        continuar = None
+        while continuar not in ['S', 'N']:
+            continuar = str(input('\nVoltar ao menu? [S/N]: ')).upper()
         if continuar == 'N':
             print('Obrigado por utilizar nosso programa :D!')
         elif continuar == 'S':
@@ -113,7 +110,7 @@ class View:
 
     def escolha_formato(self):
         escolha = None
-        while escolha != '1' and escolha != '2' and escolha != '3':
+        while escolha not in ['1', '2', '3']:
             escolha = str(input('\nVocê deseja retornar o resultado em '
                                 'formato JSON, CSV ou formatado para '
                                 'melhor visualização?'
@@ -126,5 +123,13 @@ class View:
                                 '\nDigite aqui sua escolha: '))
         return escolha
 
-
+    def mostrando_codigo_404(self):
+        escolha = None
+        while escolha not in ['S', 'N']:
+            escolha = str(input('\nAntes de terminarmos, '
+                                'gostaria de ver o erro HTTP de código 404?'
+                                '\nEste erro ocorre quando a nossa '
+                                'requisição não encontrou nenhum resultado.'
+                                '\nDigite [S] ou [N]: ')).upper()
+        return escolha
 

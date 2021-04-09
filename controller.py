@@ -55,16 +55,17 @@ class CtrlAPI:
 
     def retornar_status_request(self):
         if self.model.resultado_request == 200:
-            print('\n               --Erro 200: requisição bem sucedida.--')
+            print('\n               --Code 200: requisição bem sucedida.--\n')
         elif self.model.resultado_request == 400:
-            print('\n               --Erro 401: requisição mal sucedida.--')
+            print('\n               --Code 400: requisição mal sucedida.--\n')
         elif self.model.resultado_request == 401:
-            print('\n               --Erro 401: requisição não autorizada.--')
+            print('\n               --Code 401: requisição '
+                  'não autorizada.--\n')
         elif self.model.resultado_request == 404:
-            print('\n               --Erro 404: Requisição não encontrada.--')
+            print('\n               --Code 404: Requisição '
+                  'não encontrada.--\n')
         elif self.model.resultado_request == 500:
-            print('\n               --Erro 500: erro no servidor--')
-        print(self.model.resultado_request)
+            print('\n               --Code 500: erro no servidor--\n')
 
     def retorna_letra(self):
         nome_artista, nome_musica = self.view.intro_letra('letras')
@@ -77,8 +78,13 @@ class CtrlAPI:
             letra_formatada = self.retornar_formato(letra)
             print(letra_formatada)
         else:
-            letra_completa = letra['mus'][0]['text']
-            print(letra_completa)
+            if letra['type'] == 'exact' or letra['type'] == 'aprox':
+                letra_completa = letra['mus'][0]['text']
+                print(letra_completa)
+            elif letra['type'] == 'song_notfound':
+                print('Nome da música incorreto ou música não encontrada.')
+            elif letra['type'] == 'notfound':
+                print('Artista incorreto ou não encontrado.')
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())
@@ -95,8 +101,13 @@ class CtrlAPI:
             traducao_formatada = self.retornar_formato(traducao)
             print(traducao_formatada)
         else:
-            traducao_completa = traducao['mus'][0]['translate'][0]['text']
-            print(traducao_completa)
+            if traducao['type'] == 'exact' or traducao['type'] == 'aprox':
+                traducao_completa = traducao['mus'][0]['translate'][0]['text']
+                print(traducao_completa)
+            elif traducao['type'] == 'song_notfound':
+                print('Nome da música incorreto ou música não encontrada.')
+            elif traducao['type'] == 'notfound':
+                print('Artista incorreto ou não encontrado.')
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())
@@ -243,7 +254,7 @@ class CtrlAPI:
             rank_formatado = rank[self.rank][self.periodo][self.escopo]
             cont = 1
             for elemento in rank_formatado:
-                print(f"\nTop {cont} ---Nome: {elemento['name']} --- "
+                print(f"\nTop {cont} --- Nome: {elemento['name']} --- "
                       f"Visualizações únicas: {elemento['uniques']} --- "
                       f"Visualizações totais: {elemento['views']}")
                 cont += 1

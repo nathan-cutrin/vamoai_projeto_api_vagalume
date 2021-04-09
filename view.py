@@ -1,21 +1,27 @@
 class View:
     def introducao(self):
         print('Seja bem vindo a este software de requisição à API do Vagalume!'
-              '\nAqui você pode encontrar algumas informações do mundo d'
-              'a música!!!')
+              '\nAqui você pode encontrar algumas informações do mundo '
+              'da música!!!')
         return self.menu()
 
     def menu(self):
-        print('Neste programa, você poderá procurar por:\n'
+        print('\nNeste programa, você poderá procurar por:\n'
               '\n1 - Letras de músicas brasileiras e internacionais'
               '\n2 - Traduções de músicas internacionais'
               '\n3 - Acessar o top 100 de artistas, músicas ou albuns '
               'mais acessados do Vagalume'
+              '\n4 - Sair do programa'
               '\nVamos começar?\n')
-        menu = ''
-        while menu not in ['1', '2', '3']:
+
+        menu = None
+        while menu not in ['1', '2', '3', '4']:
             menu = str(input('Digite o número referente a opção desejada: '))
-        return menu
+        if menu != '4':
+            return menu
+        else:
+            print('Obrigado por utilizar nosso programa :D!')
+
 
     def intro_letra(self, parametro):
         print(f'\nPara procurar {parametro} de músicas, precisamos de algumas '
@@ -34,7 +40,7 @@ class View:
 
     def parametros_gerais_rank(self):
         tipo_de_rank = None
-        limite = ''
+        limite = None
         while tipo_de_rank not in ['1', '2', '3']:
             tipo_de_rank = str(input('\nOpções:'
                                      '\n[1] para rank de artistas '
@@ -42,7 +48,7 @@ class View:
                                      '\n[3] para rank de álbuns'
                                      '\nDigite a opção escolhida: '))
 
-        lista = list(range(1, 100))
+        lista = list(range(1, 101))
         lista_2 = [str(num) for num in lista]
         while limite not in lista_2:
             limite = str(input('\nDigite um número de tamanho máximo '
@@ -127,9 +133,11 @@ class View:
         escolha = None
         while escolha not in ['S', 'N']:
             escolha = str(input('\nAntes de terminarmos, '
-                                'gostaria de ver o erro HTTP de código 404?'
+                                'gostaria de ver o código HTTP 404?'
                                 '\nEste erro ocorre quando a nossa '
                                 'requisição não encontrou nenhum resultado.'
-                                '\nDigite [S] ou [N]: ')).upper()
+                                '\nDigite [S] para ver o erro e continuar'
+                                'no programa ou [N] para sair do programa'
+                                ': ')).upper()
         return escolha
 

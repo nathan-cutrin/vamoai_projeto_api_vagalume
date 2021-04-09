@@ -11,11 +11,6 @@ class View:
 
     def menu(self):
         """
-        * menu = None
-        while menu not in ['1', '2', '3']:
-            menu = input('Digite o número referente a opção desejada: ')
-
-
             faz uma breve introduçao da api e guarda a escolha do usuario na variavel menu e retorna a variavel menu 
         """
         print('Neste programa, você poderá procurar por:\n'

@@ -64,7 +64,7 @@ class CtrlAPI:
             print('\n               --Erro 404: Requisição não encontrada.--')
         elif self.model.resultado_request == 500:
             print('\n               --Erro 500: erro no servidor--')
-        print(self.model.resultado_request)
+        #print(self.model.resultado_request)
 
     def retorna_letra(self):
         nome_artista, nome_musica = self.view.intro_letra('letras')

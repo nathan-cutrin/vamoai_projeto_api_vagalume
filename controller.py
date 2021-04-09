@@ -63,8 +63,15 @@ class CtrlAPI:
         elif self.model.resultado_request == 401:
             print('Requisição não autorizada.')
         elif self.model.resultado_request == 404:
+<<<<<<< Updated upstream
             print('Requisição não encontrada :(')
         print(self.model.resultado_request)
+=======
+            print('\n               --Erro 404: Requisição não encontrada.--')
+        elif self.model.resultado_request == 500:
+            print('\n               --Erro 500: erro no servidor--')
+        
+>>>>>>> Stashed changes
 
     def retorna_letra(self):
         '''

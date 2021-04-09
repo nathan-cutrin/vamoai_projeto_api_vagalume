@@ -85,10 +85,11 @@ class CtrlAPI:
                 print('Nome da música incorreto ou música não encontrada.')
             elif letra['type'] == 'notfound':
                 print('Artista incorreto ou não encontrado.')
+        self.view.tracos()
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())
-        self.escolha_usuario_final()
+
 
     def retorna_traducao(self):
         nome_artista, nome_musica = self.view.intro_letra('traduções')
@@ -108,6 +109,7 @@ class CtrlAPI:
                 print('Nome da música incorreto ou música não encontrada.')
             elif traducao['type'] == 'notfound':
                 print('Artista incorreto ou não encontrado.')
+        self.view.tracos()
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())
@@ -209,6 +211,7 @@ class CtrlAPI:
                       f"Visualizações únicas: {elemento['uniques']} --- "
                       f"Visualizações totais: {elemento['views']}")
                 cont += 1
+        self.view.tracos()
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())
@@ -234,6 +237,7 @@ class CtrlAPI:
                       f"Visualizações únicas: {elemento['uniques']} --- "
                       f"Visualizações totais: {elemento['views']}")
                 cont += 1
+        self.view.tracos()
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())
@@ -258,6 +262,7 @@ class CtrlAPI:
                       f"Visualizações únicas: {elemento['uniques']} --- "
                       f"Visualizações totais: {elemento['views']}")
                 cont += 1
+        self.view.tracos()
         erro = self.view.mostrando_codigo_404()
         if erro == 'S':
             print(self.model.request_erro_404())

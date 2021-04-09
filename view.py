@@ -1,6 +1,6 @@
 class View:
     def introducao(self):
-        print('Seja bem vindo a este software de requisição à API do Vagalume!'
+        print('\n\nSeja bem vindo a este software de requisição à API do Vagalume!'
               '\nAqui você pode encontrar algumas informações do mundo '
               'da música!!!')
         return self.menu()
@@ -132,7 +132,7 @@ class View:
     def mostrando_codigo_404(self):
         escolha = None
         while escolha not in ['S', 'N']:
-            escolha = str(input('\nAntes de terminarmos, '
+            escolha = str(input('\n\n\nAntes de terminarmos, '
                                 'gostaria de ver o código HTTP 404?'
                                 '\nEste erro ocorre quando a nossa '
                                 'requisição não encontrou nenhum resultado.'
@@ -140,4 +140,9 @@ class View:
                                 'no programa ou [N] para sair do programa'
                                 ': ')).upper()
         return escolha
+
+    def tracos(self):
+        print('\n')
+        print('-'*80)
+
 

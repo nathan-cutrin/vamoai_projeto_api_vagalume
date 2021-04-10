@@ -1,13 +1,12 @@
 # vamoai_projeto_api_vagalume
+             ![410-fundo-escuro](https://user-images.githubusercontent.com/75862640/114273479-9111dd80-99f0-11eb-9dc4-8936c1a84507.jpg)
+
 
 ### Projeto Modulo 2, da Turma Vamo AI 
 
 Este é um projeto de final de módulo do curso Análise de dados pela Resilia educacão em parceria com Ifood. 
 Para este projeto foi proposto a criacão de uma aplicacão para consumir o conteúdo da (https://api.vagalume.com.br/)
 com o modelo MVC de arquitetura de software. 
-
-![410-fundo-escuro](https://user-images.githubusercontent.com/75862640/114273479-9111dd80-99f0-11eb-9dc4-8936c1a84507.jpg)
-
 
 
 Para isso utilizados os seguintes conceitos : 

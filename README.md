@@ -20,6 +20,7 @@ Este programa foi feito com Python (3.8) e o desenvolvimento ocorreu em um ambie
 Para instalar as requests, é necessário utilizar o seguinte comando para sua instalacão:
 
 `$ python -m pip install requests`
+
 `$ python -m pip install pandas`
 
 

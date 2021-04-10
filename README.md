@@ -11,7 +11,7 @@ Para isso utilizados os seguintes conceitos :
 
 Este programa foi feito com Python (3.8) e o desenvolvimento ocorreu em um ambiente virtual do PyCharm e VsCode. 
 
->Para executar o programa, é necessário ter o Python e o Flask instalados no seu computador.
+>Para executar o programa, é necessário ter o Python e as bibliotecas *requests e pandas* instalados no seu computador.
 
 ### Instalando o Python
 >Para instalar o Python, entre no site oficial da linguagem em https://www.python.org/ e vá para Downloads. Lá, você encontrará o instalador adequado para o seu >sistema operacional (Windows, Mac OS ou Linux).
@@ -20,5 +20,6 @@ Este programa foi feito com Python (3.8) e o desenvolvimento ocorreu em um ambie
 Para instalar as requests, é necessário utilizar o seguinte comando para sua instalacão:
 
 `$ python -m pip install requests`
+`$ python -m pip install pandas`
 
 

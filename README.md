@@ -1,5 +1,5 @@
 # vamoai_projeto_api_vagalume
-             ![410-fundo-escuro](https://user-images.githubusercontent.com/75862640/114273479-9111dd80-99f0-11eb-9dc4-8936c1a84507.jpg)
+![410-fundo-escuro](https://user-images.githubusercontent.com/75862640/114273479-9111dd80-99f0-11eb-9dc4-8936c1a84507.jpg)
 
 
 ### Projeto Modulo 2, da Turma Vamo AI 

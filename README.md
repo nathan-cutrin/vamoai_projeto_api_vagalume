@@ -2,7 +2,7 @@
 ![410-fundo-escuro](https://user-images.githubusercontent.com/75862640/114273479-9111dd80-99f0-11eb-9dc4-8936c1a84507.jpg)
 
 
-### Projeto Modulo 2, da Turma Vamo AI 
+### Projeto Modulo 2 VamoAI 
 
 Este é um projeto de final de módulo do curso Análise de dados pela Resilia educacão em parceria com Ifood. 
 Para este projeto foi proposto a criacão de uma aplicacão para consumir o conteúdo da (https://api.vagalume.com.br/)
@@ -41,6 +41,11 @@ Para instalar nosso projeto em sua máquina é muito simples, basta digitar em s
 
 `git clone https://github.com/jpnune/vamoai_projeto_api_vagalume.git`
 
+### Gostou? Faca do projeto vamoai_api_vagalume
 
-
+1. De Fork nesse repositorio.
+2. Cria uma branch: `git checkout -b <branch_name>`
+3. Faça suas alterações e commit: `git commit -m '<commit_message>'`
+4. Dê um push para o branch original: `git push origin <project_name>/<location>`
+5. Crie um Pull Request.
 

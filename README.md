@@ -41,11 +41,14 @@ Para instalar nosso projeto em sua máquina é muito simples, basta digitar em s
 
 `git clone https://github.com/jpnune/vamoai_projeto_api_vagalume.git`
 
-### Gostou? Faca do projeto vamoai_api_vagalume
+### Gostou? Que tal fazer do projeto vamoai_api_vagalume o seu também? <3
 
 1. De Fork nesse repositorio.
 2. Cria uma branch: `git checkout -b <branch_name>`
 3. Faça suas alterações e commit: `git commit -m '<commit_message>'`
 4. Dê um push para o branch original: `git push origin <project_name>/<location>`
 5. Crie um Pull Request.
+
+
+
 

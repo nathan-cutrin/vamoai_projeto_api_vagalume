@@ -16,6 +16,11 @@ Foram utilizados os seguintes conceitos técnicos na linguagem Python:
 - POO (Paradigma orientado a objeto)
 - Príncipios SOLID 
 
+# A seguir o fluxograma do nosso programa:
+
+![410-fundo-escuro](https://user-images.githubusercontent.com/75862640/114274538-48105800-99f5-11eb-8253-762d4e0de2c0.jpg)
+
+
 Este programa foi feito com Python(3.8) e o desenvolvimento ocorreu em um ambiente virtual do PyCharm e VsCode. 
 
 >Para executar o programa, é necessário ter o Python e as bibliotecas *requests e pandas* instalados no seu computador.

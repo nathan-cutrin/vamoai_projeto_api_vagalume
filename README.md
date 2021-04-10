@@ -8,3 +8,12 @@ com o modelo MVC de arquitetura de software.
 Para isso utilizados os seguintes conceitos : 
 - POO (Paradigma orientado a objeto)
 - Príncipios SOLID 
+
+Este programa foi feito com Python (3.8) e o desenvolvimento ocorreu em um ambiente virtual do PyCharm e VsCode. 
+
+>Para executar o programa, é necessário ter o Python e o Flask instalados no seu computador.
+
+### Instalando o Python
+Para instalar o Python, entre no site oficial da linguagem em https://www.python.org/ e vá para Downloads. Lá, você encontrará o instalador adequado para o seu sistema operacional (Windows, Mac OS ou Linux).
+
+

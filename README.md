@@ -8,15 +8,15 @@ Este é um projeto de final de módulo do curso Análise de dados pela Resilia e
 Para este projeto foi proposto a criacão de uma aplicacão para consumir o conteúdo da (https://api.vagalume.com.br/)
 com o modelo MVC de arquitetura de software. 
 
-Nosso programa aceita o input do usuário para receber busca: Letras, traducões e rank de artistas e bandas retornando três saídas de dados no formato:
-> Json, csv e texto
+Nosso programa aceita o input do usuário para receber busca: Letras, traducões e rank de artistas e bandas retornando três saídas de dados nos seguintes formatos:
+Json, csv e texto
 
 
-Para isso utilizados os seguintes conceitos : 
+Foram utilizados os seguintes conceitos técnicos na linguagem Python: 
 - POO (Paradigma orientado a objeto)
 - Príncipios SOLID 
 
-Este programa foi feito com Python (3.8) e o desenvolvimento ocorreu em um ambiente virtual do PyCharm e VsCode. 
+Este programa foi feito com Python(3.8) e o desenvolvimento ocorreu em um ambiente virtual do PyCharm e VsCode. 
 
 >Para executar o programa, é necessário ter o Python e as bibliotecas *requests e pandas* instalados no seu computador.
 
@@ -33,6 +33,8 @@ Para instalar as requests, é necessário utilizar o seguinte comando no termina
 
 ### INSTALANDO vamoai_projeto_api_vagalume
 Para instalar nosso projeto em sua máquina é muito simples, basta digitar em seu terminal: 
+
+`git clone https://github.com/jpnune/vamoai_projeto_api_vagalume.git`
 
 
 

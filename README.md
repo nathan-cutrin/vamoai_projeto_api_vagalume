@@ -29,7 +29,7 @@ Este programa foi feito com Python(3.8) e o desenvolvimento ocorreu em um ambien
 >Para instalar o Python, entre no site oficial da linguagem em https://www.python.org/ e vá para Downloads. Lá, você encontrará o instalador adequado para o seu >sistema operacional (Windows, Mac OS ou Linux).
 
 ### Instalando as Bibliotecas
-Para instalar as requests, é necessário utilizar o seguinte comando no terminal para sua instalacão:
+Para utilizar nosso programa, é necessário utilizar o seguinte comando no terminal para sua instalacão:
 
 `$ python -m pip install requests`
 

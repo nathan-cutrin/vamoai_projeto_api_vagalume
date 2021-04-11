@@ -14,7 +14,8 @@ Json, csv e texto
 
 Foram utilizados os seguintes conceitos técnicos na linguagem Python: 
 - POO (Paradigma orientado a objeto)
-- Príncipios SOLID 
+- Príncipios SOLID (Usamos o principio de responsabilidade unica do SOLID)
+- MVC (Model, View, Controller)
 
 ## A seguir o fluxograma do nosso programa:
 
